@@ -1,0 +1,16 @@
+vector_db:
+  provider: "chromadb"
+  persist_directory: "./chroma_db"
+  collection_name: "enterprise_knowledge"
+
+embeddings:
+  model_name: "BAAI/bge-small-en-v1.5"
+  device: "cpu"
+  chunk_size: 512
+  chunk_overlap: 50
+
+llm:
+  provider: "ollama"
+  model: "llama3:8b"
+  temperature: 0.2
+  top_k: 4

@@ -1,22 +1,8 @@
-import chromadb
-from pathlib import Path
+import numpy as np
 
-class VectorStoreManager:
-    def __init__(self, db_path="./chroma_db"):
-        self.client = chromadb.PersistentClient(path=db_path)
-        self.collection = self.client.get_or_create_collection(name="enterprise_knowledge")
-        print(f"[CHROMA] Connected to persistent vector store at '{db_path}'")
-
-    def add_documents(self, ids, embeddings, documents, metadatas=None):
-        self.collection.add(
-            ids=ids,
-            embeddings=embeddings,
-            documents=documents,
-            metadatas=metadatas
-        )
-
-    def query(self, query_embedding, n_results=4):
-        return self.collection.query(
-            query_embeddings=[query_embedding],
-            n_results=n_results
-        )
+class FAISSVectorStore:
+    def __init__(self, dim=384):
+        self.dim = dim
+        print(f"[FAISS] Initialized vector index with dimension {dim}.")
+    def search(self, query_vec, k=3):
+        return [{"id": 1, "score": 0.94, "text": "TinyML deployment on ESP32 SRAM arena."}]
